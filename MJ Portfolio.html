@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mandar Joshi — Business Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0F0F0F;
+    --ink-mid: #4A4A4A;
+    --ink-light: #8A8A8A;
+    --paper: #F8F6F1;
+    --paper-dark: #EEECE6;
+    --accent: #C84B2F;
+    --accent-light: #F5EAE7;
+    --border: #DDDBD4;
+    --green: #1A6E52;
+    --green-light: #E4F0EB;
+    --blue: #1A4A7A;
+    --blue-light: #E4ECF5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 160px 48px 100px;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 5vw, 62px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc { font-size: 17px; color: var(--ink-mid); line-height: 1.7; max-width: 440px; }
+  .hero-stats { display: flex; flex-direction: column; gap: 24px; border-left: 2px solid var(--border); padding-left: 48px; }
+  .stat-item { }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px; line-height: 1;
+    color: var(--ink); letter-spacing: -0.04em;
+  }
+  .stat-num span { font-size: 28px; color: var(--accent); }
+  .stat-label { font-size: 13px; color: var(--ink-light); font-weight: 500; margin-top: 4px; }
+  .stat-divider { width: 40px; height: 1px; background: var(--border); }
+
+  /* SECTION HEADER */
+  .section-header {
+    max-width: 1100px; margin: 0 auto;
+    padding: 80px 48px 48px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .section-count { font-size: 13px; color: var(--ink-light); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* CASE STUDY CARDS */
+  .cases { max-width: 1100px; margin: 0 auto; padding: 0 48px 80px; display: flex; flex-direction: column; gap: 2px; }
+
+  .case-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .case-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+  .case-header {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 0; align-items: stretch;
+  }
+  .case-number {
+    background: var(--ink); color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+  }
+  .case-intro { padding: 28px 32px; }
+  .case-tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px; margin-bottom: 10px;
+  }
+  .tag-red { background: var(--accent-light); color: var(--accent); }
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-blue { background: var(--blue-light); color: var(--blue); }
+  .case-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 6px; }
+  .case-sub { font-size: 14px; color: var(--ink-mid); }
+  .case-toggle {
+    padding: 28px 32px; display: flex; align-items: center;
+    border-left: 1px solid var(--border);
+  }
+  .toggle-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--paper-dark); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--ink); transition: background 0.2s, transform 0.3s;
+  }
+  .case-card.open .toggle-btn { background: var(--ink); color: white; transform: rotate(45deg); }
+
+  .case-body {
+    display: none; border-top: 1px solid var(--border);
+    padding: 40px 40px 40px 112px;
+    animation: fadeIn 0.3s ease;
+  }
+  .case-card.open .case-body { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+  .case-section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 12px;
+  }
+  .case-section-title {
+    font-family: 'DM Serif Display', serif; font-size: 18px;
+    color: var(--ink); margin-bottom: 12px;
+  }
+  .case-text { font-size: 14.5px; color: var(--ink-mid); line-height: 1.75; }
+
+  .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+  .outcome-card {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 4px; padding: 20px 16px;
+  }
+  .outcome-num {
+    font-family: 'DM Serif Display', serif; font-size: 32px;
+    letter-spacing: -0.03em; color: var(--ink); line-height: 1;
+  }
+  .outcome-label { font-size: 12px; color: var(--ink-light); margin-top: 4px; font-weight: 500; }
+
+  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tool-pill {
+    font-size: 12px; font-weight: 500; padding: 5px 12px;
+    background: var(--paper-dark); border-radius: 2px;
+    color: var(--ink-mid); border: 1px solid var(--border);
+  }
+
+  .process-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 14px 16px; background: var(--paper);
+    border-left: 3px solid var(--border); border-radius: 0 4px 4px 0;
+  }
+  .step-num { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--accent); flex-shrink: 0; line-height: 1.2; }
+  .step-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.6; }
+  .step-text strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 2px; }
+
+  .divider-full { height: 1px; background: var(--border); margin: 48px 0 0; }
+
+  /* SKILLS */
+  .skills-section { max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 16px; }
+  .skill-group { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 24px; }
+  .skill-group-title { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 16px; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { font-size: 13px; padding: 5px 12px; background: var(--paper); border: 1px solid var(--border); border-radius: 2px; color: var(--ink-mid); font-weight: 400; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--ink); padding: 80px 48px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 48px); color: white;
+    letter-spacing: -0.03em; margin-bottom: 16px;
+  }
+  .cta-section h2 em { color: #C8A882; font-style: italic; }
+  .cta-desc { font-size: 16px; color: #888; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-links { display: flex; gap: 16px; justify-content: center; }
+  .cta-btn {
+    display: inline-block; padding: 14px 28px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .cta-btn-primary { background: white; color: var(--ink); }
+  .cta-btn-primary:hover { background: var(--paper); }
+  .cta-btn-secondary { background: transparent; color: white; border: 1px solid #444; }
+  .cta-btn-secondary:hover { border-color: #888; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); border-top: 1px solid #1F1F1F;
+    padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 13px; color: #555; }
+
+  /* FADE IN ON LOAD */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 120px 20px 60px; gap: 40px; }
+    .hero-stats { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 32px; flex-direction: row; flex-wrap: wrap; }
+    .section-header, .cases, .skills-section { padding-left: 20px; padding-right: 20px; }
+    .case-header { grid-template-columns: 56px 1fr auto; }
+    .case-body { padding: 24px 20px; }
+    .case-grid { grid-template-columns: 1fr; gap: 32px; }
+    .outcome-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 60px 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">MJ — Business Analyst</div>
+  <ul class="nav-links">
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero fade-up">
+  <div>
+    <p class="hero-eyebrow">Portfolio — Business Analysis</p>
+    <h1>Where process<br/>meets <em>outcome</em></h1>
+    <p class="hero-desc">BCS-certified Business Analyst with experience across enterprise SAP implementations and integration with other systems, retail analytics and operational design. I turn complex requirements into systems that actually work.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">$77<span>M</span></div>
+      <div class="stat-label">Revenue impact — $75M order management + $2M forms delivery</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">65<span>+</span></div>
+      <div class="stat-label">System changes delivered across 3 project streams at Honeywell</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">50<span>%</span></div>
+      <div class="stat-label">Incident reduction via RPA automation</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<div id="cases" class="section-header fade-up">
+  <h2 class="section-title">Case Studies</h2>
+  <span class="section-count">03 projects</span>
+</div>
+
+<div class="cases fade-up">
+
+  <!-- CASE 1: TCS/HONEYWELL — THREE STREAMS -->
+  <div class="case-card open" onclick="toggleCase(this)">
+    <div class="case-header">
+      <div class="case-number">01</div>
+      <div class="case-intro">
+        <span class="case-tag tag-red">Enterprise SAP · 3 Project Streams · Honeywell</span>
+        <h3 class="case-title">Three Years Embedded at Honeywell — SAP Delivery, Support & Product Management</h3>
+        <p class="case-sub">Tata Consultancy Services · May 2021 – May 2024 · SAP SD Consultant & Acting Product Manager</p>
+      </div>
+      <div class="case-toggle"><button class="toggle-btn" aria-label="Toggle case study">+</button></div>
+    </div>
+    <div class="case-body">
+
+      <!-- STREAM TABS -->
+      <div style="display:flex; gap:0; border:1px solid var(--border); border-radius:4px; overflow:hidden; margin-bottom:32px;">
+        <button class="stream-tab active" onclick="switchStream(event,'stream-1')" style="flex:1; padding:12px 8px; font-size:13px; font-weight:500; border:none; cursor:pointer; background:var(--ink); color:white; border-right:1px solid var(--border); font-family:inherit;">📦 Rapid Delivery</button>
+        <button class="stream-tab" onclick="switchStream(event,'stream-2')" style="flex:1; padding:12px 8px; font-size:13px; font-weight:500; border:none; cursor:pointer; background:var(--paper); color:var(--ink-mid); border-right:1px solid var(--border); font-family:inherit;">🔧 App Support</button>
+        <button class="stream-tab" onclick="switchStream(event,'stream-3')" style="flex:1; padding:12px 8px; font-size:13px; font-weight:500; border:none; cursor:pointer; background:var(--paper); color:var(--ink-mid); font-family:inherit;">📋 Forms Council</button>
+      </div>
+
+      <!-- STREAM 1 -->
+      <div id="stream-1" class="stream-content">
+        <div class="case-grid">
+          <div>
+            <p class="case-section-label">May 2021 – May 2024 · Change Delivery</p>
+            <h4 class="case-section-title">Order Management Transformation — 35+ Change Requests End-to-End</h4>
+            <p class="case-text">Honeywell's order management process was generating revenue risk through accumulated inconsistencies in SAP. As the embedded BA, I owned the full change lifecycle — from VP-level discovery workshops through to benefits realisation — across three years of continuous Agile delivery.</p>
+
+            <div class="process-steps" style="margin-top:24px;">
+              <p class="case-section-label">How I worked</p>
+              <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Stakeholder Identification & Elicitation</strong>Identified relevant stakeholders across VPs, IT Business Partners, Product Owners and end users. Ran workshops and interviews to surface requirements from discovery through to benefits realisation.</div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Agile Prioritisation</strong>Managed and prioritised 35+ change requests using MoSCoW framework in Agile delivery — balancing business urgency, technical complexity and stakeholder expectations across quarters.</div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Process Analysis & Future-State Design</strong>Analysed existing business processes across multiple operations, identified inefficiencies and mapped future-state workflows — collaborating with internal IT teams, QAs, developers and external vendors on system design.</div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-text"><strong>SIT, Regression & UAT</strong>Orchestrated comprehensive System Integration Testing, Regression Testing and UAT cycles — created test plans, managed defect tracking and reported progress to ensure defect-free delivery.</div></div>
+            </div>
+          </div>
+          <div>
+            <p class="case-section-label">Outcomes</p>
+            <div class="outcome-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+              <div class="outcome-card"><div class="outcome-num">$75M</div><div class="outcome-label">Revenue contribution across all change delivery</div></div>
+              <div class="outcome-card"><div class="outcome-num">35+</div><div class="outcome-label">Change requests delivered end-to-end</div></div>
+              <div class="outcome-card"><div class="outcome-num">100%</div><div class="outcome-label">On-time go-live rate across all releases</div></div>
+            </div>
+            <div style="margin-top:24px;">
+              <p class="case-section-label">Tools & Methods</p>
+              <div class="tools-row">
+                <span class="tool-pill">SAP SD</span><span class="tool-pill">Jira</span><span class="tool-pill">Visio (BPMN)</span><span class="tool-pill">MoSCoW</span><span class="tool-pill">Agile / Scrum</span><span class="tool-pill">SIT / UAT</span><span class="tool-pill">Defect Tracking</span><span class="tool-pill">Vendor Management</span>
+              </div>
+            </div>
+            <div style="margin-top:24px; padding:20px; background:var(--accent-light); border-radius:4px;">
+              <p style="font-size:13.5px; color:var(--accent); font-weight:500; margin-bottom:4px;">Key learning</p>
+              <p style="font-size:13.5px; color:var(--ink-mid); line-height:1.6;">Managing VP-level stakeholders and end users in the same delivery cycle requires two completely different communication modes — and knowing when to switch is the actual skill. Requirements clarity always broke down at the handoff between those two groups.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STREAM 2 -->
+      <div id="stream-2" class="stream-content" style="display:none;">
+        <div class="case-grid">
+          <div>
+            <p class="case-section-label">June 2022 – May 2024 · ITIL Support</p>
+            <h4 class="case-section-title">SAP Application Support — ITIL Incident Management & RPA Automation</h4>
+            <p class="case-text">Alongside change delivery, I led SAP application support for Honeywell — resolving 3–5 live incidents daily under SLA, while simultaneously identifying systemic patterns and driving automation to reduce recurring incident volume at its root cause.</p>
+
+            <div class="process-steps" style="margin-top:24px;">
+              <p class="case-section-label">How I worked</p>
+              <div class="step"><div class="step-num">1</div><div class="step-text"><strong>ITIL-Aligned Incident Management</strong>Resolved SAP incidents daily under SLA using ServiceNow — handling ticket allocation, SLA monitoring and user training aligned to global support processes.</div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Process Analysis & Documentation</strong>Performed thorough analysis of support workflows, documented current-state processes around ticket allocation and SLA monitoring, and identified optimisation opportunities.</div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-text"><strong>RPA Automation</strong>Identified vendor invoice processing as a high-volume, repetitive incident source — designed and implemented an RPA solution that eliminated the manual workload and drove a 50% reduction in month-end incident volumes.</div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Cross-Functional Collaboration</strong>Worked across Finance, Procurement and Manufacturing teams to resolve complex multi-system issues — building relationships that later accelerated change delivery in Stream 1.</div></div>
+            </div>
+          </div>
+          <div>
+            <p class="case-section-label">Outcomes</p>
+            <div class="outcome-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+              <div class="outcome-card"><div class="outcome-num">50%</div><div class="outcome-label">Reduction in month-end incident volume via RPA</div></div>
+              <div class="outcome-card"><div class="outcome-num">95%+</div><div class="outcome-label">First-response SLA satisfaction rate</div></div>
+              <div class="outcome-card"><div class="outcome-num">3–5</div><div class="outcome-label">SAP incidents resolved daily under SLA</div></div>
+              <div class="outcome-card"><div class="outcome-num">3</div><div class="outcome-label">Business functions supported — Finance, Procurement, Manufacturing</div></div>
+            </div>
+            <div style="margin-top:24px;">
+              <p class="case-section-label">Tools & Methods</p>
+              <div class="tools-row">
+                <span class="tool-pill">ServiceNow</span><span class="tool-pill">ITIL</span><span class="tool-pill">RPA Automation</span><span class="tool-pill">SAP SD</span><span class="tool-pill">SLA Management</span><span class="tool-pill">Process Documentation</span>
+              </div>
+            </div>
+            <div style="margin-top:24px; padding:20px; background:var(--accent-light); border-radius:4px;">
+              <p style="font-size:13.5px; color:var(--accent); font-weight:500; margin-bottom:4px;">Key learning</p>
+              <p style="font-size:13.5px; color:var(--ink-mid); line-height:1.6;">The best support analyst is making themselves redundant. Every recurring incident is a process failure waiting to be fixed — not a ticket to be closed. The RPA solution came directly from asking "why does this keep happening" instead of just resolving it again.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STREAM 3 -->
+      <div id="stream-3" class="stream-content" style="display:none;">
+        <div class="case-grid">
+          <div>
+            <p class="case-section-label">January 2023 – May 2024 · Product Management</p>
+            <h4 class="case-section-title">Forms Council — Acting Product Manager for Customer-Facing SAP Documents</h4>
+            <p class="case-text">I was appointed to act as Product Manager for Honeywell's suite of customer-facing commercial documents — Quotations, Order Acknowledgements, Invoices and Rebates — owning the full change lifecycle from intake through to UAT sign-off and quarterly delivery planning.</p>
+
+            <div class="process-steps" style="margin-top:24px;">
+              <p class="case-section-label">How I worked</p>
+              <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Change Intake & Analysis</strong>Collaborated with Product Owners and business sponsors to analyse incoming change requests, logging and triaging them in SharePoint with full traceability.</div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-text"><strong>As-Is / To-Be Scenario Design</strong>Prepared current-state and future-state documentation for each change — presented to Product Owners for approval before any development resource was committed.</div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Quarterly Delivery Planning</strong>After approval, planned each change into a delivery quarter — assigned functional analysts and developers, managed timelines via weekly stand-ups and resolved delivery blockers proactively.</div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-text"><strong>UAT Coordination & Sign-Off</strong>Created test plans for business sponsors, assisted in testing execution and managed sign-off to ensure timely, defect-free release of every change.</div></div>
+            </div>
+          </div>
+          <div>
+            <p class="case-section-label">Outcomes</p>
+            <div class="outcome-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+              <div class="outcome-card"><div class="outcome-num">$2M</div><div class="outcome-label">Revenue realised on time through improved forms delivery</div></div>
+              <div class="outcome-card"><div class="outcome-num">30+</div><div class="outcome-label">Changes delivered — regulatory compliance & CX improvements</div></div>
+              <div class="outcome-card"><div class="outcome-num">4</div><div class="outcome-label">Document types owned — Quotes, OAs, Invoices, Rebates</div></div>
+              <div class="outcome-card"><div class="outcome-num">100%</div><div class="outcome-label">Quarterly delivery cadence maintained</div></div>
+            </div>
+            <div style="margin-top:24px;">
+              <p class="case-section-label">Tools & Methods</p>
+              <div class="tools-row">
+                <span class="tool-pill">SharePoint</span><span class="tool-pill">SAP SD</span><span class="tool-pill">As-Is / To-Be Analysis</span><span class="tool-pill">UAT Management</span><span class="tool-pill">Quarterly Planning</span><span class="tool-pill">Resource Allocation</span><span class="tool-pill">Stakeholder Presentation</span>
+              </div>
+            </div>
+            <div style="margin-top:24px; padding:20px; background:var(--accent-light); border-radius:4px;">
+              <p style="font-size:13.5px; color:var(--accent); font-weight:500; margin-bottom:4px;">Key learning</p>
+              <p style="font-size:13.5px; color:var(--ink-mid); line-height:1.6;">A customer-facing document is a product. The invoice is the last thing a customer sees before paying you — getting it wrong costs revenue and trust in the same moment. Treating forms as a product backlog rather than a change queue completely changed how stakeholders engaged with the process.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-full"></div>
+    </div>
+  </div>
+
+  <style>
+    .stream-tab:hover { opacity: 0.85; }
+  </style>
+  <script>
+    function switchStream(e, id) {
+      e.stopPropagation();
+      document.querySelectorAll('.stream-content').forEach(s => s.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.querySelectorAll('.stream-tab').forEach(t => {
+        t.style.background = 'var(--paper)';
+        t.style.color = 'var(--ink-mid)';
+      });
+      e.target.style.background = 'var(--ink)';
+      e.target.style.color = 'white';
+    }
+  </script>
+
+  <!-- CASE 2: FOREVER SPACES -->
+  <div class="case-card" onclick="toggleCase(this)">
+    <div class="case-header">
+      <div class="case-number" style="background:var(--green);">02</div>
+      <div class="case-intro">
+        <span class="case-tag tag-green">Operational Design · Process Architecture · From Scratch</span>
+        <h3 class="case-title">Building the Operating System of a Growing Business</h3>
+        <p class="case-sub">Forever Spaces · Dec 2025 – Present · Business Analyst & Operations Lead</p>
+      </div>
+      <div class="case-toggle"><button class="toggle-btn" aria-label="Toggle case study">+</button></div>
+    </div>
+    <div class="case-body">
+      <div class="case-grid">
+        <div>
+          <p class="case-section-label">The Problem</p>
+          <h4 class="case-section-title">A scaling business running on informal knowledge and no process infrastructure</h4>
+          <p class="case-text">Forever Spaces, a growing interiors company, had no documented processes across its core functions. Procurement was ad hoc — orders were placed without structured lead-time planning, specification checks, or a formal change management path. Project management relied on tribal knowledge, and there was no single view of business performance. The Managing Director needed the business to be scalable, but had no operational baseline to build from.</p>
+
+          <div class="process-steps" style="margin-top:24px;">
+            <p class="case-section-label">How I worked</p>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Discovery</strong>Conducted stakeholder interviews across sales, design and operations to map current workflows and identify failure points — including where missed spec checks and late supplier flags were causing rework.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Process design from zero</strong>Designed and formalised end-to-end processes for procurement, project management, sales pipeline and order management — none existed before. Each process was structured, documented and handed off to the relevant owner.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><strong>KPI framework</strong>Built a business scorecard tracking sales conversion, project completion rate, snag-free delivery rate and time-to-completion — giving the MD their first structured view of operational performance.</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Embedding</strong>Introduced communication cadences and handoff structures between design, sales and operations to reduce scheduling friction and improve cross-functional coordination.</div></div>
+          </div>
+        </div>
+        <div>
+          <p class="case-section-label">What was delivered</p>
+          <div class="outcome-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+            <div class="outcome-card"><div class="outcome-num">4</div><div class="outcome-label">Core processes designed and formalised from zero</div></div>
+            <div class="outcome-card"><div class="outcome-num">1st</div><div class="outcome-label">Business scorecard — company's first KPI framework</div></div>
+            <div class="outcome-card" style="grid-column:span 2;"><div class="outcome-num" style="font-size:18px; font-family:'DM Sans',sans-serif; font-weight:500; line-height:1.5;">Procurement · Project management · Sales pipeline · Order management</div><div class="outcome-label" style="margin-top:4px;">Functional areas taken from informal to fully documented</div></div>
+          </div>
+
+          <div style="margin-top:24px;">
+            <p class="case-section-label">Tools & Methods</p>
+            <div class="tools-row">
+              <span class="tool-pill">Process mapping</span>
+              <span class="tool-pill">KPI design</span>
+              <span class="tool-pill">Stakeholder interviews</span>
+              <span class="tool-pill">Gap analysis</span>
+              <span class="tool-pill">KBBConnect</span>
+              <span class="tool-pill">CRM</span>
+              <span class="tool-pill">Requirements elicitation</span>
+              <span class="tool-pill">As-is / to-be design</span>
+            </div>
+          </div>
+
+          <div style="margin-top:24px; padding:20px; background:var(--green-light); border-radius:4px;">
+            <p style="font-size:13.5px; color:var(--green); font-weight:500; margin-bottom:4px;">Key learning</p>
+            <p style="font-size:13.5px; color:var(--ink-mid); line-height:1.6;">In small businesses, the BA's job is translation in both directions — turning ambiguous founder intent into structured process, and structured process back into language the team will actually follow. The scorecard only worked because every metric was defined with the people who would own it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCUREMENT PROCESS DIAGRAM -->
+      <div style="margin-top:40px; border-top:1px solid var(--border); padding-top:32px;">
+        <p style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-light); margin-bottom:8px;">Process artefact — created & formalised at Forever Spaces</p>
+        <h4 style="font-family:'DM Serif Display',serif; font-size:20px; letter-spacing:-0.02em; color:var(--ink); margin-bottom:6px;">Procurement process flow</h4>
+        <p style="font-size:14px; color:var(--ink-mid); margin-bottom:24px;">Designed from scratch to bring structure to an ad hoc ordering process — covering four phases: planning, verification, change management, and order placement. Includes decision logic for long lead-time items (Brass finishes, Utopia worktops, Whirlpool systems) and a formal exception path for specification changes.</p>
+
+        <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:24px; overflow-x:auto;">
+          <svg width="100%" viewBox="0 0 680 920" role="img" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Sans',sans-serif; min-width:520px;">
+            <title>Forever Spaces procurement process flow</title>
+            <desc>Four-phase flowchart: Planning (initialise checklist, match vendors, flag long lead times), Verification (verify surfaces, check specs, resolve gaps), Changes (handle specification shifts, cancel backorders, notify stakeholders), Order (place order, monitor delivery).</desc>
+            <defs>
+              <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+
+            <!-- Phase lane backgrounds -->
+            <rect x="48" y="60"  width="592" height="178" rx="6" fill="#F0F7F4" stroke="#C8DDD6" stroke-width="0.5"/>
+            <rect x="48" y="252" width="592" height="222" rx="6" fill="#F2F0F9" stroke="#CCC8EC" stroke-width="0.5"/>
+            <rect x="48" y="488" width="592" height="200" rx="6" fill="#FDF3F1" stroke="#ECC8C0" stroke-width="0.5"/>
+            <rect x="48" y="702" width="592" height="160" rx="6" fill="#F0F7F4" stroke="#C8DDD6" stroke-width="0.5"/>
+
+            <!-- Phase labels -->
+            <text font-size="11" font-weight="500" fill="#6B9E8A" text-anchor="middle" transform="rotate(-90,30,149)" x="30" y="149">Planning</text>
+            <text font-size="11" font-weight="500" fill="#7E78C4" text-anchor="middle" transform="rotate(-90,30,363)" x="30" y="363">Verification</text>
+            <text font-size="11" font-weight="500" fill="#C07060" text-anchor="middle" transform="rotate(-90,30,588)" x="30" y="588">Changes</text>
+            <text font-size="11" font-weight="500" fill="#6B9E8A" text-anchor="middle" transform="rotate(-90,30,782)" x="30" y="782">Order</text>
+
+            <!-- STEP 1: Initialise checklist -->
+            <rect x="220" y="80" width="240" height="52" rx="6" fill="#1A6E52" stroke="#0F5040" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="100">Initialise checklist</text>
+            <text font-size="11" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central" x="340" y="118">Review fitting info, open Order/Fitting doc</text>
+
+            <line x1="340" y1="132" x2="340" y2="152" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+
+            <!-- STEP 2: Match vendors -->
+            <rect x="220" y="152" width="240" height="52" rx="6" fill="#1A6E52" stroke="#0F5040" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="172">Match items to vendors</text>
+            <text font-size="11" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central" x="340" y="190">Estimate lead times per item</text>
+
+            <line x1="340" y1="204" x2="340" y2="226" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+
+            <!-- DECISION: Long lead time? -->
+            <polygon points="340,226 394,249 340,272 286,249" fill="white" stroke="#888" stroke-width="0.8"/>
+            <text font-size="11" font-weight="500" fill="#333" text-anchor="middle" dominant-baseline="central" x="340" y="245">Long lead time?</text>
+            
+            <!-- Yes branch right -->
+            <line x1="394" y1="249" x2="458" y2="249" stroke="#BA7517" stroke-width="1" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#BA7517" text-anchor="middle" x="428" y="243">Yes</text>
+            <rect x="458" y="227" width="162" height="44" rx="6" fill="#BA7517" stroke="#9A6010" stroke-width="0.5"/>
+            <text font-size="12" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="539" y="244">Flag for early order</text>
+            <text font-size="10" fill="#FAD08A" text-anchor="middle" dominant-baseline="central" x="539" y="261">Prioritise in schedule</text>
+
+            <!-- Flag rejoins -->
+            <line x1="539" y1="271" x2="539" y2="310" stroke="#BA7517" stroke-width="0.8" fill="none"/>
+            <line x1="539" y1="310" x2="462" y2="310" stroke="#BA7517" stroke-width="0.8" fill="none" marker-end="url(#arr2)"/>
+
+            <!-- No branch down -->
+            <line x1="340" y1="272" x2="340" y2="292" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#888" text-anchor="end" x="334" y="285">No</text>
+
+            <!-- STEP 4: Verify surfaces -->
+            <rect x="220" y="292" width="240" height="52" rx="6" fill="#534AB7" stroke="#3C3489" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="312">Verify surface areas</text>
+            <text font-size="11" fill="#CECBF6" text-anchor="middle" dominant-baseline="central" x="340" y="330">Wet walls · flooring · tiles · ceilings</text>
+
+            <line x1="340" y1="344" x2="340" y2="364" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+
+            <!-- STEP 5: Check item specs -->
+            <rect x="220" y="364" width="240" height="52" rx="6" fill="#534AB7" stroke="#3C3489" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="382">Check item specs</text>
+            <text font-size="11" fill="#CECBF6" text-anchor="middle" dominant-baseline="central" x="340" y="400">WC mount · Click/Click+ · MDF · accessories</text>
+
+            <line x1="340" y1="416" x2="340" y2="436" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+
+            <!-- DECISION: Spec confirmed? -->
+            <polygon points="340,436 394,459 340,482 286,459" fill="white" stroke="#888" stroke-width="0.8"/>
+            <text font-size="11" font-weight="500" fill="#333" text-anchor="middle" dominant-baseline="central" x="340" y="455">All specs confirmed?</text>
+        
+
+            <!-- Gap branch right -->
+            <line x1="394" y1="459" x2="458" y2="459" stroke="#A32D2D" stroke-width="1" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#A32D2D" text-anchor="middle" x="428" y="452">Gap</text>
+            <rect x="458" y="437" width="162" height="44" rx="6" fill="#A32D2D" stroke="#791F1F" stroke-width="0.5"/>
+            <text font-size="12" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="539" y="454">Resolve spec gap</text>
+            <text font-size="10" fill="#F7C1C1" text-anchor="middle" dominant-baseline="central" x="539" y="471">Clarify before proceeding</text>
+
+            <!-- Resolve rejoins -->
+            <line x1="539" y1="481" x2="539" y2="500" stroke="#A32D2D" stroke-width="0.8" fill="none"/>
+            <line x1="539" y1="500" x2="462" y2="500" stroke="#A32D2D" stroke-width="0.8" fill="none" marker-end="url(#arr2)"/>
+
+            <!-- Yes down -->
+            <line x1="340" y1="482" x2="340" y2="508" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#888" text-anchor="end" x="334" y="498">Yes</text>
+
+            <!-- DECISION: Spec changed? -->
+            <polygon points="340,508 394,531 340,554 286,531" fill="white" stroke="#888" stroke-width="0.8"/>
+            <text font-size="11" font-weight="500" fill="#333" text-anchor="middle" dominant-baseline="central" x="340" y="527">Specification changed?</text>
+            
+
+            <!-- Yes branch right -->
+            <line x1="394" y1="531" x2="458" y2="531" stroke="#A32D2D" stroke-width="1" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#A32D2D" text-anchor="middle" x="428" y="524">Yes</text>
+            <rect x="458" y="509" width="162" height="44" rx="6" fill="#A32D2D" stroke="#791F1F" stroke-width="0.5"/>
+            <text font-size="12" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="539" y="526">Cancel backorder</text>
+            <text font-size="10" fill="#F7C1C1" text-anchor="middle" dominant-baseline="central" x="539" y="543">If alternative confirmed</text>
+
+            <line x1="539" y1="553" x2="539" y2="572" stroke="#A32D2D" stroke-width="0.8" fill="none" marker-end="url(#arr2)"/>
+
+            <rect x="458" y="572" width="162" height="44" rx="6" fill="#BA7517" stroke="#9A6010" stroke-width="0.5"/>
+            <text font-size="12" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="539" y="589">Notify client + designer</text>
+            <text font-size="10" fill="#FAD08A" text-anchor="middle" dominant-baseline="central" x="539" y="606">Update KBB software</text>
+
+            <line x1="539" y1="616" x2="539" y2="644" stroke="#A32D2D" stroke-width="0.8" fill="none"/>
+            <line x1="539" y1="644" x2="462" y2="644" stroke="#A32D2D" stroke-width="0.8" fill="none" marker-end="url(#arr2)"/>
+
+            <!-- No down -->
+            <line x1="340" y1="554" x2="340" y2="644" stroke="#888" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+            <line x1="340" y1="644" x2="340" y2="664" stroke="#888" stroke-width="1" fill="none" marker-end="url(#arr2)"/>
+            <text font-size="10" fill="#888" text-anchor="end" x="334" y="567">No</text>
+
+            <!-- STEP: Place order -->
+            <rect x="220" y="664" width="240" height="52" rx="6" fill="#1A6E52" stroke="#0F5040" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="684">Place order</text>
+            <text font-size="11" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central" x="340" y="702">Log delivery dates per item</text>
+
+            <line x1="340" y1="716" x2="340" y2="740" stroke="#888" stroke-width="1" marker-end="url(#arr2)"/>
+
+            <!-- END: Monitor delivery -->
+            <rect x="220" y="740" width="240" height="52" rx="6" fill="#3B6D11" stroke="#27500A" stroke-width="0.5"/>
+            <text font-size="13" font-weight="500" fill="white" text-anchor="middle" dominant-baseline="central" x="340" y="760">Monitor delivery</text>
+            <text font-size="11" fill="#C0DD97" text-anchor="middle" dominant-baseline="central" x="340" y="778">Track against project timeline</text>
+
+            <!-- Legend -->
+            <rect x="60" y="840" width="560" height="58" rx="6" fill="none" stroke="#DDDBD4" stroke-width="0.5"/>
+            <text font-size="10" fill="#AAA" x="80" y="858">Legend</text>
+            <rect x="80" y="866" width="12" height="12" rx="2" fill="#1A6E52"/>
+            <text font-size="11" fill="#555" x="98" y="877">Process step</text>
+            <rect x="200" y="866" width="12" height="12" rx="2" fill="#534AB7"/>
+            <text font-size="11" fill="#555" x="218" y="877">Verification step</text>
+            <rect x="340" y="866" width="12" height="12" rx="2" fill="#BA7517"/>
+            <text font-size="11" fill="#555" x="358" y="877">Alert / notify</text>
+            <rect x="450" y="866" width="12" height="12" rx="2" fill="#A32D2D"/>
+            <text font-size="11" fill="#555" x="468" y="877">Exception / change</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="divider-full"></div>
+    </div>
+  </div>
+
+  <!-- CASE 3: TESCO -->
+  <div class="case-card" onclick="toggleCase(this)">
+    <div class="case-header">
+      <div class="case-number" style="background:var(--blue);">03</div>
+      <div class="case-intro">
+        <span class="case-tag tag-blue">Retail Analytics · Data-Driven Operations</span>
+        <h3 class="case-title">Using EPOS Data to Drive Store Performance at Tesco</h3>
+        <p class="case-sub">Tesco · Jul 2024 – Dec 2025 · Retail Business Analyst</p>
+      </div>
+      <div class="case-toggle"><button class="toggle-btn" aria-label="Toggle case study">+</button></div>
+    </div>
+    <div class="case-body">
+      <div class="case-grid">
+        <div>
+          <p class="case-section-label">The Problem</p>
+          <h4 class="case-section-title">Dashboard data available but not consistently translated into action</h4>
+          <p class="case-text">Tesco's store had access to rich operational data — transaction voids, shrink boards, waste reporting, sales performance — via Power BI and Tableau. The challenge wasn't data availability; it was converting daily outputs into prioritised, actionable decisions for store management in a fast-moving retail environment.</p>
+
+          <div class="process-steps" style="margin-top:24px;">
+            <p class="case-section-label">How I worked</p>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Daily Monitoring</strong>Tracked Power BI and Tableau dashboards across transaction voids, shrink, waste and sales performance — identifying anomalies and trends before they became incidents.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><strong>80/20 Analysis</strong>Applied Pareto analysis to identify the 20% of SKU placements and operational issues driving 80% of waste, loss and underperformance.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Insight Presentation</strong>Presented findings to store management on profitability, promotional performance and top-loss categories — translating data into specific layout and stock recommendations.</div></div>
+          </div>
+        </div>
+        <div>
+          <p class="case-section-label">Outcomes</p>
+          <div class="outcome-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+            <div class="outcome-card"><div class="outcome-num">18%</div><div class="outcome-label">Sales increase from stock placement changes</div></div>
+            <div class="outcome-card"><div class="outcome-num">15%</div><div class="outcome-label">Improvement in customer satisfaction scores</div></div>
+            <div class="outcome-card" style="grid-column:span 2;"><div class="outcome-num" style="font-size:16px; font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.5;">Consistently met customer recommendation benchmark through proactive issue resolution informed by EPOS data monitoring</div><div class="outcome-label" style="margin-top:6px;">Operational benchmark</div></div>
+          </div>
+
+          <div style="margin-top:32px;">
+            <p class="case-section-label">Tools & Methods</p>
+            <div class="tools-row">
+              <span class="tool-pill">Power BI</span>
+              <span class="tool-pill">Tableau</span>
+              <span class="tool-pill">EPOS Data Analysis</span>
+              <span class="tool-pill">80/20 Pareto Analysis</span>
+              <span class="tool-pill">Customer Journey Mapping</span>
+            </div>
+          </div>
+
+          <div style="margin-top:28px; padding:20px; background:var(--blue-light); border-radius:4px;">
+            <p style="font-size:13.5px; color:var(--blue); font-weight:500; margin-bottom:4px;">Key learning</p>
+            <p style="font-size:13.5px; color:var(--ink-mid); line-height:1.6;">Most organisations have more data than insight. The analyst's value isn't in reading dashboards — it's in knowing which number changes first, what it signals downstream, and how to present that to a decision-maker who has 90 seconds to act on it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="divider-full"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="section-header fade-up">
+  <h2 class="section-title">Skills & Toolkit</h2>
+  <span class="section-count">BCS Certified</span>
+</div>
+<div class="skills-section fade-up">
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Analysis & Requirements</p>
+      <div class="skill-list">
+        <span class="skill-tag">Requirements Elicitation</span>
+        <span class="skill-tag">User Story Writing</span>
+        <span class="skill-tag">BPMN Process Mapping</span>
+        <span class="skill-tag">Gap Analysis</span>
+        <span class="skill-tag">UAT Coordination</span>
+        <span class="skill-tag">MoSCoW Prioritisation</span>
+        <span class="skill-tag">Stakeholder Management</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Technical Toolkit</p>
+      <div class="skill-list">
+        <span class="skill-tag">SAP SD (ERP)</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Visio</span>
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">SharePoint</span>
+        <span class="skill-tag">Excel</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Methodologies</p>
+      <div class="skill-list">
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">ITIL</span>
+        <span class="skill-tag">Lean / Six Sigma</span>
+        <span class="skill-tag">RACI Frameworks</span>
+        <span class="skill-tag">80/20 Analysis</span>
+        <span class="skill-tag">Change Management</span>
+        <span class="skill-tag">KPI Design</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <h2>Let's work on something <em>worth solving</em></h2>
+  <p class="cta-desc">Open to BA roles, product-adjacent positions and consulting opportunities. Based in the UK.</p>
+  <div class="cta-links">
+    <a href="https://www.linkedin.com/in/iam-mj/" class="cta-btn cta-btn-primary" target="_blank">Connect on LinkedIn</a>
+    <a href="mailto:mandarjoshi47@email.com" class="cta-btn cta-btn-secondary">Send an email</a>
+  </div>
+</section>
+
+<footer>
+  <p>MJ — Business Analyst Portfolio</p>
+  <p>BCS Certified · SAP ERP Systems · Change Management · SQL</p>
+</footer>
+
+<script>
+  function toggleCase(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.case-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
